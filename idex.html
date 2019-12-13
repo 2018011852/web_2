@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PearSeven</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<script src="js/animate.js"></script>
+	<div class="notice" id="notice">
+		<div class="no1"><img src="images/a15.png"></div>
+		<div id="no3"><span class="no2" id="no2">[温馨提示]最近有不少不法分子在网上骗人，请大家注意!!!</span></div>
+	</div>
+	<div class="white"></div>
+	<div class="box" id="box">
+		<div class="slider" id="slider">
+			<div class="sli"><img src="images/b5.png"></div>
+			<div class="sli"><img src="images/b1.png"></div>
+			<div class="sli"><img src="images/b2.png"></div>
+			<div class="sli"><img src="images/b3.png"></div>
+			<div class="sli"><img src="images/b4.png"></div>
+			<div class="sli"><img src="images/b5.png"></div>
+			<div class="sli"><img src="images/b1.png"></div>
+		</div>
+		<span id="left"> < </span>	
+		<span id="right"> > </span>
+		<ul class="nav" id="nav">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</body>
+	<script>
+		var no2 = document.getElementById("no2");
+		var temp = window.onload = setInterval(function(){
+			var now = parseInt(getStyle(no2,"marginLeft"));
+			if(now <= -360){
+				no2.style.marginLeft = "920px";
+				no2.style.overflow = "hidden";
+			}
+			else{
+				no2.style.marginLeft = now - 1 + "px";
+			}
+		},20)
+	</script>
+	<script>
+		var box = document.getElementById("box");
+		var navList = document.getElementById("nav").children;
+		var slider = document.getElementById("slider");
+		var left = document.getElementById("left");
+		var right = document.getElementById("right");
+		var i=1;
+		var timer;
+		var isMoving = false;
+		function next(){
+			if(!isMoving){
+				isMoving = true;
+				i++;
+				navChange();
+				animate(slider,{left:-1200*i},function(){
+					if(i === 6){
+						slider.style.left = "-1200px";
+						i = 1;
+					}
+					isMoving = false;
+				});
+			}
+		}
+		function prev(){
+			if(isMoving){
+				return;
+			}
+			isMoving = true;
+			i--;
+			navChange();
+			animate(slider,{left:-1200*i},function(){
+				if(i === 0){
+					slider.style.left = "-6000px";
+					i = 5;
+				}
+				isMoving = false;
+			});
+		}
+		var timer = setInterval(next,3000)
+		box.onmouseover = function(){
+			animate(left,{opacity:50});
+			animate(right,{opacity:50});
+			clearInterval(timer);
+		}
+		box.onmouseout = function(){
+			animate(left,{opacity:0});
+			animate(right,{opacity:0});
+			timer = setInterval(next, 3000)
+		}
+		right.onclick = next;
+		left.onclick = prev;
+
+		for(var j=0;j<navList.length;j++){
+			navList[j].index = j;	//获取小圆圈对应的下标（0-4）
+			navList[j].onclick = function(){
+				i = this.index + 1;	//小圆圈与图片的下标相差1
+				navChange();
+				animate(slider,{left:-1200*i});
+			}
+		}
+		function navChange(){	//导航的变化
+			for(var j=0;j<navList.length;j++){
+				navList[j].className = "";
+			}
+			if(i === 6){
+				navList[0].className = "active";
+			}
+			else if(i === 0){
+				navList[4].className = "active";
+			}
+			else{
+				navList[i-1].className = "active";	//小圆圈与图片的下标相差1,当显示第二张图片时，图片下标为2，对应小圆圈下标为1
+			}
+		}
+	</script>
+</html>

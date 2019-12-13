@@ -1,0 +1,99 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+ul,li{
+	list-style: none;
+}
+.notice{
+	display: block;
+	width: 1600px;
+	height: 20px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	background-color: #ccc;
+}
+.no1{
+	display: block;
+	float: left;
+	line-height: 24px;
+	margin-left: 150px;
+}
+.no2{
+	display: block;
+	float: right;
+	margin-right: 200px;
+	position: absolute;
+	color: red;
+	font-size: 14px;
+	margin-left: 920px;
+	width: 400px;
+}
+#no3{
+	overflow: hidden;
+	padding-left: 10px;
+	width: 920px;
+	height: 20px;
+	position: relative;
+}
+.white{
+	width: 1600px;
+	height: 15px;
+}
+.box{
+	width: 1200px;
+	height: 382px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.slider{
+	width: 8400px;
+	position: absolute;
+	left: -1200px;
+}
+.sli{
+	width: 1200px;
+	overflow: hidden;
+	float: left;
+}
+.box>span{
+	display: block;
+	position: absolute;
+	width: 30px;
+	height: 50px;
+	top: 175px;
+	line-height: 50px;
+	font-size: 30px;
+	color: ;
+	cursor: pointer;
+	background: red;
+	text-align: center;
+	cursor: pointer;
+	opacity: 0;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right: 30px;
+}
+.nav{
+	position: absolute;
+	left: 500px;
+	bottom: 20px;
+}
+.nav>li{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50%;
+	text-align: center;
+}
+.nav .active{	/*类选择器优先于标签选择器*/
+	background: red;
+}
